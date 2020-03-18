@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#"
+     xml:base="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#employee -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#employee">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#manager -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#manager">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#person"/>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#人事部主管 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#人事部主管">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门主管"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#人事部职工 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#人事部职工">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门职工"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#信息部主管 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#信息部主管">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门主管"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#信息部职工 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#信息部职工">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门职工"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#制造部主管 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#制造部主管">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门主管"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#制造部职工 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#制造部职工">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门职工"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#市场部主管 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#市场部主管">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门主管"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#市场部职工 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#市场部职工">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门职工"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#总经理 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#总经理">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#manager"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#董事会成员 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#董事会成员">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#manager"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#董事会普通成员 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#董事会普通成员">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#董事会成员"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#董事长 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#董事长">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#董事会成员"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#财务部主管 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#财务部主管">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门主管"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#财务部职工 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#财务部职工">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门职工"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门主管 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门主管">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#manager"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门职工 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#部门职工">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/30605/ontologies/2020/2/HR_management#employee"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

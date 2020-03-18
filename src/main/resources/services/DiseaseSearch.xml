@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<profile>
+    <ontology>
+        <import resource="pain_name" />
+        <import resource="disease" />
+    </ontology>
+
+    <process>
+        <!--IOPE-->
+        <hasInput>
+            <input id="pain_name" datatype="string" />
+        </hasInput>
+
+        <hasOutput>
+            <output id="disease" datatype="string" />
+        </hasOutput>
+
+        <hasPrecondition>
+        </hasPrecondition>
+
+        <hasResult>
+        </hasResult>
+    </process>
+
+    <description>
+        <!--服务提供类-->
+        <providedBy>com.zy.service.DisearchSearch</providedBy>
+
+        <serviceName>DisearchSearch</serviceName>
+        <textDescription>疾病治疗</textDescription>
+        <serviceCategory>无</serviceCategory>
+
+        <qos>
+            <time>3.04</time>
+            <throughout>200</throughout>
+        </qos>
+    </description>
+</profile>
