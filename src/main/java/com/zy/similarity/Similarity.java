@@ -7,7 +7,12 @@ import com.zy.wordnet.WordNetSim;
 import static com.zy.similarity.BasicTypeSimilarity.BasicType;
 
 public class Similarity {
-    public static double param = 1;   // 计算本体间距离的一个参数，大于0
+
+    private static double PARAM = 1;   // 计算本体间距离的一个参数，大于0
+
+    private static double TYPE_WEIGHT = 1;   // typeSimilarity所占权重
+    private static double ONT_WEIGHT = 1;    // OntologySimilarity所占权重
+    private static double WORDNET_WEIGHT = 1;  // WordNetSimilarity所占权重
 
     private Service s1;
     private Service s2;
@@ -15,6 +20,12 @@ public class Similarity {
     public Similarity(Service s1, Service s2) {
         this.s1 = s1;
         this.s2 = s2;
+    }
+
+    public double getSimilarity() {
+        double T =  getTypeSim() * TYPE_WEIGHT + getOntSim() * ONT_WEIGHT
+                + getWordNetSim() * WORDNET_WEIGHT;
+        return T / (TYPE_WEIGHT + ONT_WEIGHT + WORDNET_WEIGHT);
     }
 
     public double getTypeSim() {
@@ -67,7 +78,7 @@ public class Similarity {
         if (o1 == null || o2 == null) {
             return 0;
         } else {
-            return param / (param + dis);
+            return PARAM / (PARAM + dis);
         }
     }
 
