@@ -6,18 +6,21 @@ import com.zy.wordnet.WordNetSim;
 
 import static com.zy.similarity.BasicTypeSimilarity.BasicType;
 
-public class Similarity {
+/**
+ * 测试服务s1->s2的相似度
+ */
+public class SimilarityUtil {
 
     private static double PARAM = 1;   // 计算本体间距离的一个参数，大于0
 
-    private static double TYPE_WEIGHT = 1;   // typeSimilarity所占权重
-    private static double ONT_WEIGHT = 1;    // OntologySimilarity所占权重
+    private static double TYPE_WEIGHT = 2;   // typeSimilarity所占权重
+    private static double ONT_WEIGHT = 2;    // OntologySimilarity所占权重
     private static double WORDNET_WEIGHT = 1;  // WordNetSimilarity所占权重
 
     private Service s1;
     private Service s2;
 
-    public Similarity(Service s1, Service s2) {
+    public SimilarityUtil(Service s1, Service s2) {
         this.s1 = s1;
         this.s2 = s2;
     }
@@ -30,27 +33,30 @@ public class Similarity {
 
     public double getTypeSim() {
 
-        BasicType inputType1 = BasicType.getInstance(s1.getInputType());
         BasicType outType1 = BasicType.getInstance(s1.getOutputType());
-
         BasicType inputType2 = BasicType.getInstance(s2.getInputType());
-        BasicType outType2 = BasicType.getInstance(s2.getOutputType());
-
-        double inSim = BasicTypeSimilarity.getSimilarity(inputType1, inputType2);
-        double outSim = BasicTypeSimilarity.getSimilarity(outType1, outType2);
-
-        return 0.5 * (inSim + outSim);
+        return BasicTypeSimilarity.getSimilarity(outType1, inputType2);
     }
 
     public double getOntSim() {
 
-        double inputSim = calOntSim(s1.getInput(), s2.getInput());
-        double outputSim = calOntSim(s1.getOutput(), s2.getOutput());
-        double ret = (inputSim + outputSim) / 2;
+        double ret = calOntSim(s1.getOutput(), s2.getInput());
         return ret;
     }
 
-    private double calOntSim(Ontology o1, Ontology o2) {
+    public double getWordNetSim() {
+
+        double ret = calWordNetSim(s1.getOutput(), s2.getInput());
+        return ret;
+    }
+
+    /**
+     * 计算两个本体的相似度
+     * @param o1
+     * @param o2
+     * @return
+     */
+    public static double calOntSim(Ontology o1, Ontology o2) {
 
         int dis = 0;
         int level1 = o1.getLevel();
@@ -82,15 +88,13 @@ public class Similarity {
         }
     }
 
-    public double getWordNetSim() {
-
-        double inputSim = calWordNetSim(s1.getInput(), s2.getInput());
-        double outputSim = calWordNetSim(s1.getOutput(), s2.getOutput());
-        double ret = (inputSim + outputSim) / 2;
-        return ret;
-    }
-
-    private double calWordNetSim(Ontology o1, Ontology o2) {
+    /**
+     * 计算两个本体的wordnet相似度
+     * @param o1
+     * @param o2
+     * @return
+     */
+    public static double calWordNetSim(Ontology o1, Ontology o2) {
 
         WordNetSim wordNetSim = new WordNetSim(o1.getName(), o2.getName());
         return wordNetSim.getSimilarity();
