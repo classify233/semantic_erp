@@ -1,6 +1,5 @@
 package com.zy.gragh;
 
-import com.zy.entity.Ontology;
 import com.zy.entity.Service;
 
 import java.util.List;
