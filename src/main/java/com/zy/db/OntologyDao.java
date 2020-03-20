@@ -49,6 +49,10 @@ public class OntologyDao {
         return Ontology.parse(map);
     }
 
+    public static List<Ontology> selectAll() {
+        return select(null, null);
+    }
+
     /**
      * 查询语句
      * @param conditionStr 条件语句（WHERE,OEDER BY)，参数用?代替
