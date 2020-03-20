@@ -4,8 +4,6 @@ import com.zy.entity.Ontology;
 import com.zy.entity.Service;
 import com.zy.wordnet.WordNetSim;
 
-import static com.zy.similarity.BasicTypeSimilarity.BasicType;
-
 /**
  * 测试服务s1->s2的相似度
  */
