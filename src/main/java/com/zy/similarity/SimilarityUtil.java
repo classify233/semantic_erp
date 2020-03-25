@@ -11,7 +11,7 @@ public class SimilarityUtil {
 
     private static double PARAM = 1;   // 计算本体间距离的一个参数，大于0
 
-    private static double TYPE_WEIGHT = 2;   // typeSimilarity所占权重
+    private static double TYPE_WEIGHT = 1;   // typeSimilarity所占权重
     private static double ONT_WEIGHT = 2;    // OntologySimilarity所占权重
     private static double WORDNET_WEIGHT = 1;  // WordNetSimilarity所占权重
 
@@ -24,9 +24,12 @@ public class SimilarityUtil {
     }
 
     public double getSimilarity() {
-        double T =  getTypeSim() * TYPE_WEIGHT + getOntSim() * ONT_WEIGHT
+        /*double T =  getTypeSim() * TYPE_WEIGHT + getOntSim() * ONT_WEIGHT
                 + getWordNetSim() * WORDNET_WEIGHT;
-        return T / (TYPE_WEIGHT + ONT_WEIGHT + WORDNET_WEIGHT);
+        return T / (TYPE_WEIGHT + ONT_WEIGHT + WORDNET_WEIGHT);*/
+
+        double T =  getTypeSim() * TYPE_WEIGHT + getOntSim() * ONT_WEIGHT;
+        return T / (TYPE_WEIGHT + ONT_WEIGHT);
     }
 
     public double getTypeSim() {
