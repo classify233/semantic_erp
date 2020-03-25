@@ -11,7 +11,7 @@ import java.util.*;
  * 生成有向图
  */
 public class Graph {
-    private static double SIM_THRESHOLD = 0.1;
+    public static final double SIM_THRESHOLD = 0.1;
 
     public GraphNode[] nodes;
     public GraphNode startNode;
