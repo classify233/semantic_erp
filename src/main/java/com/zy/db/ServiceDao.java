@@ -39,4 +39,17 @@ public class ServiceDao {
         HashMap<String, Object> map = ret.get(0);
         return Service.parse(map);
     }
+
+    public static List<Service> getAllServices() {
+        List<Service> serviceList = new ArrayList<>();
+
+        String sql = "SELECT * FROM service";
+        ArrayList<HashMap<String, Object>> ret = DbHelper.executeQuery(sql, null);
+
+        for(HashMap<String, Object> map : ret) {
+            serviceList.add(Service.parse(map));
+        }
+
+        return serviceList;
+    }
 }
