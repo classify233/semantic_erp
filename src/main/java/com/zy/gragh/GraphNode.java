@@ -12,6 +12,8 @@ public class GraphNode implements Comparable<GraphNode> {
 
     private List<GraphNode> nexts;
 
+    private int index;
+
     public GraphNode() {
     }
 
@@ -31,6 +33,14 @@ public class GraphNode implements Comparable<GraphNode> {
         this.nexts = nexts;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
     @Override
     public int compareTo(GraphNode o) {
         // 根据Qos对节点进行排序
@@ -44,6 +54,13 @@ public class GraphNode implements Comparable<GraphNode> {
             return 0;
     }
 
-    public boolean isUsed = false;    // 在BfsTravel算法中用到， 访问标记
+    public boolean isUsed = false;    // 访问标记
     public GraphNode before = null;   // 上一个节点
+    public int accessTime = 0;       // 访问次数（SPFA算法使用）
+
+    public void resetFlag() {
+        isUsed = false;
+        before = null;
+        accessTime = 0;
+    }
 }
