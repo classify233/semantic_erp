@@ -17,7 +17,7 @@ public class BfsTravel {
     // private Map<GraphNode, GraphNode> before = new HashMap<>();
 
     // 保存路径
-    LinkedList<GraphNode> path;
+    private LinkedList<GraphNode> path;
 
     public BfsTravel(Graph graph) {
         this.graph = graph;
@@ -25,9 +25,21 @@ public class BfsTravel {
     }
 
     private void solve() {
+
+        for (GraphNode node : graph.serviceNodes) {
+            node.resetFlag();
+        }
+        graph.startNode.resetFlag();
+        graph.endNode.resetFlag();
+
         // 广度优先搜索，贪心法优先搜索Qos大的
         // 优先队列
-        PriorityQueue<GraphNode> queue = new PriorityQueue<>();
+        PriorityQueue<GraphNode> queue = new PriorityQueue<>(new Comparator<GraphNode>() {
+            @Override
+            public int compare(GraphNode o1, GraphNode o2) {
+                return -o1.compareTo(o2);
+            }
+        });
         queue.add(graph.startNode);
 
         while (!queue.isEmpty()) {
