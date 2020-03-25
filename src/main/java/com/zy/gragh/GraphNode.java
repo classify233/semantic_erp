@@ -41,6 +41,7 @@ public class GraphNode implements Comparable<GraphNode> {
         this.index = index;
     }
 
+    // 为了方便排序
     @Override
     public int compareTo(GraphNode o) {
         // 根据Qos对节点进行排序
@@ -54,6 +55,7 @@ public class GraphNode implements Comparable<GraphNode> {
             return 0;
     }
 
+    // --------------- 为了算法运行方便，设置的属性变量 ---------------------
     public boolean isUsed = false;    // 访问标记
     public GraphNode before = null;   // 上一个节点
     public int accessTime = 0;       // 访问次数（SPFA算法使用）
