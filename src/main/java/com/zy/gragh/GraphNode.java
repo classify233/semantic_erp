@@ -43,4 +43,7 @@ public class GraphNode implements Comparable<GraphNode> {
         else
             return 0;
     }
+
+    public boolean isUsed = false;    // 在BfsTravel算法中用到， 访问标记
+    public GraphNode before = null;   // 上一个节点
 }
