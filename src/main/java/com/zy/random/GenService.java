@@ -11,13 +11,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import static com.zy.entity.Service.*;
+
 public class GenService {
-    public static double MAX_TIME = 1000;
-    public static double MIN_TIME = 0;
-
-    public static double MAX_THROUGHOUT = 100;
-    public static double MIN_THROUGHOUT = 0;
-
     private static int counter = 0;
 
     private static List<Ontology> ontologies;
