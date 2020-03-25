@@ -2,6 +2,8 @@ package com.zy.similarity;
 
 public class BasicTypeSimilarity {
 
+    // BOOLEAN("boolean"), FLOAT("float"),
+    // INT("int"), STRING("string"), DATE("date");
     static double[][] matrix = new double[][]{
             {1, 0, 0.1, 0, 0},
             {0, 1, 0.5, 0, 0},
