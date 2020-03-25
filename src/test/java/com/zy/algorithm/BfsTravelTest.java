@@ -17,6 +17,7 @@ public class BfsTravelTest {
         Graph graph = new Graph();
         graph.initStartEndNode(OntologyDao.selectById(34),
                 OntologyDao.selectById(36), "string", "int");
+
         BfsTravel bfsTravel = new BfsTravel(graph);
         List<GraphNode> travelPath = bfsTravel.getTravelPath();
         System.out.println("路径长度:" + travelPath.size());
