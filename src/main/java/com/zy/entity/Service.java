@@ -6,6 +6,15 @@ import com.zy.utils.MapToEntity;
 import java.util.HashMap;
 
 public class Service {
+    private static final int TIME_WEIGHT = 1;
+    private static final int THROUGHOUT_WEIGHT = 1;
+
+    public static final double MAX_TIME = 1000;
+    public static final double MIN_TIME = 0;
+
+    public static final double MAX_THROUGHOUT = 100;
+    public static final double MIN_THROUGHOUT = 0;
+
     private int id = -1;
 
     private Ontology input;
@@ -102,7 +111,12 @@ public class Service {
     }
 
     public void setQosTime(double qosTime) {
-        this.qosTime = qosTime;
+        if (qosTime < MIN_TIME)
+            this.qosTime = MIN_TIME;
+        else if (qosTime > MAX_TIME)
+            this.qosTime = MAX_TIME;
+        else
+            this.qosTime = qosTime;
     }
 
     public double getQosThroughout() {
@@ -110,7 +124,12 @@ public class Service {
     }
 
     public void setQosThroughout(double qosThroughout) {
-        this.qosThroughout = qosThroughout;
+        if (qosThroughout < MIN_THROUGHOUT)
+            this.qosThroughout = MIN_THROUGHOUT;
+        else if (qosThroughout > MAX_THROUGHOUT)
+            this.qosThroughout = MAX_THROUGHOUT;
+        else
+            this.qosThroughout = qosThroughout;
     }
 
     @Override
@@ -139,5 +158,12 @@ public class Service {
             service.setOutput(OntologyDao.selectById((Integer) map.get("output")));
 
         return service;
+    }
+
+    public double getQosTotal() {
+        double timeStd = (qosTime - MIN_TIME) / (MAX_TIME - MIN_TIME);
+        double throughoutStd = (qosThroughout - MIN_TIME) / (MAX_TIME - MIN_TIME);
+        return (timeStd * TIME_WEIGHT + throughoutStd * THROUGHOUT_WEIGHT) /
+                (TIME_WEIGHT + THROUGHOUT_WEIGHT);
     }
 }
