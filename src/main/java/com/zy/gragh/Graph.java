@@ -13,11 +13,12 @@ import java.util.*;
 public class Graph {
     public static final double SIM_THRESHOLD = 0.1;
 
-    public GraphNode[] nodes;
+    public GraphNode[] serviceNodes;
     public GraphNode startNode;
-    public int startIndex;
     public GraphNode endNode;
-    public int endIndex;
+
+    // public int startIndex;
+    // public int endIndex;
 
     public List<Service> services;    // 服务集合
 
@@ -59,12 +60,13 @@ public class Graph {
         edgeWeight = new double[services.size() + 2][services.size() + 2];
 
         // 初始化所有中间service节点
-        nodes = new GraphNode[services.size()];
+        serviceNodes = new GraphNode[services.size()];
         for (int i = 0; i < services.size(); i++) {
             GraphNode nodeI = new GraphNode();
             nodeI.setService(services.get(i));
             nodeI.setNexts(new ArrayList<>());
-            nodes[i] = nodeI;
+            nodeI.setIndex(i);
+            serviceNodes[i] = nodeI;
         }
 
         // 计算服务之间的相似度(i->j)
@@ -79,7 +81,7 @@ public class Graph {
 
                     // 如果超过阈值
                     if (sim > SIM_THRESHOLD) {
-                        nodes[i].getNexts().add(nodes[j]);
+                        serviceNodes[i].getNexts().add(serviceNodes[j]);
                     }
                 }
             }
@@ -100,9 +102,9 @@ public class Graph {
         initStartNode();
         initEndNode();
 
-        // 初始化edgeWeight
+        /*// 初始化edgeWeight
         startIndex = services.size();
-        endIndex = services.size() + 1;
+        endIndex = services.size() + 1;*/
 
         // 计算输入与各服务之间的相似度
         calInputWeight();
@@ -113,21 +115,29 @@ public class Graph {
     }
 
     private void initStartNode() {
-        startNode = new GraphNode();
         Service startService = new Service();
         startService.setOutput(inputOnt);
         startService.setOutputType(inputType);
+        startService.setQosTime(Service.MAX_TIME);
+        startService.setQosThroughout(Service.MAX_THROUGHOUT);
+
+        startNode = new GraphNode();
         startNode.setService(startService);
         startNode.setNexts(new ArrayList<>());
+        startNode.setIndex(services.size());
     }
 
     private void initEndNode() {
-        endNode = new GraphNode();
         Service endService = new Service();
         endService.setInput(outputOnt);
         endService.setInputType(outputType);
+        endService.setQosTime(Service.MAX_TIME);
+        endService.setQosThroughout(Service.MAX_THROUGHOUT);
+
+        endNode = new GraphNode();
         endNode.setService(endService);
         endNode.setNexts(new ArrayList<>());
+        endNode.setIndex(services.size() + 1);
     }
 
     // 计算input节点和其它节点的权重
@@ -135,10 +145,10 @@ public class Graph {
         for (int i = 0; i < services.size(); i++) {
             SimilarityUtil util = new SimilarityUtil(startNode.getService(), services.get(i));
             double sim = util.getSimilarity();
-            edgeWeight[startIndex][i] = sim;
+            edgeWeight[startNode.getIndex()][i] = sim;
 
             if (sim > SIM_THRESHOLD) {
-                startNode.getNexts().add(nodes[i]);
+                startNode.getNexts().add(serviceNodes[i]);
             }
         }
     }
@@ -148,10 +158,10 @@ public class Graph {
         for (int i = 0; i < services.size(); i++) {
             SimilarityUtil util = new SimilarityUtil(services.get(i), endNode.getService());
             double sim = util.getSimilarity();
-            edgeWeight[i][endIndex] = sim;
+            edgeWeight[i][endNode.getIndex()] = sim;
 
             if (sim > SIM_THRESHOLD) {   // 把结束插到nexts list的开头
-                nodes[i].getNexts().add(0, endNode);
+                serviceNodes[i].getNexts().add(0, endNode);
             }
         }
     }
